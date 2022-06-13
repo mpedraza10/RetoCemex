@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil | CEMEX</title>
+    <link href="resources/css/perfil.css" rel="stylesheet" type="text/css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="icon" href="resources/img/logo2.png" type="image/icon type">
+    <script>
+      window.onload = function() {
+        try {
+            const user = document.getElementById("user").value
+            console.log(user)
+            sessionStorage.user = user
+        } catch(e) {
+            console.log(e)
+        }
+      }
+    </script>
+  </head>
+  
+  <body>
+    <div class="container-fluid headerPerfil">
+      <br>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-5 col-md-3 order-1 espacioFotoPerfil">
+            <img id="fotoPerfil" alt="foto" src="resources/img/foto_perfil.png">
+          </div>
+          <div class="col-12 col-md-5 order-3 order-md-2 ps-md-5 datosPersona">
+            <p class="fs-1">Bienvenid@ <%= user %>! </p>
+            <p class="fs-5">33 - Mty, NL - Practicante</p>
+          </div>
+          <div class="col-7 col-md-4 order-2 order-md-3 d-flex justify-content-end">
+            <div class="row">
+              <div class="col-12 d-flex justify-content-end">
+                <a href="stats">
+                  <img id="logoBlanco" alt="logo" src="resources/img/logo_blanco.png">
+                </a>
+              </div>
+              <div class="col-3 offset-3">
+                <a href="stats">
+                  <img class="icon" alt="icon" src="resources/img/configB.png">
+                </a>
+              </div>
+              <div class="col-3">
+                <a href="game">
+                  <img class="icon" alt="icon" src="resources/img/gameB.png">
+                </a>
+              </div>
+              <div class="col-3">
+                <a href="logout">
+                  <img class="icon" alt="icon" src="resources/img/logoutB.png">
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+    </div>
+    
+    <br>
+    <div class="container-fluid">
+      <div class="mx-1 row">
+        <div class="col-12 p-3 fs-5 puesto">
+          Área: Recursos Humanos <br> Proyecto: <br> Año de entrada:
+        </div>
+        <form id="hide-form">
+          <input type="text" name="user" id="user" value=<%= user %>>
+        </form>
+      </div>
+    </div>
+    <br>
+    
+    <div class="container-fluid text-center logros">
+      <div class="row gy-3">
+        <div class="col-6 col-md-3">
+          <div class="h-100 card">
+            <img src="resources/img/Logro_1.png" class="card-img-top imgLogro" alt="logro_1">
+            <div class="card-body">
+              <p class="card-text">Premio obra CEMEX 2022</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="h-100 card">
+            <img src="resources/img/Logro_2.jpeg" class="card-img-top imgLogro" alt="logro_2">
+            <div class="card-body">
+              <p class="card-text">Premio obra CEMEX 2017</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="h-100 card">
+            <img src="resources/img/Logro_3.jpeg" class="card-img-top imgLogro" alt="logro_3">
+            <div class="card-body">
+              <p class="card-text">Obras Ganadoras</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="h-100 card">
+            <img src="resources/img/Logro_4.jpeg" class="card-img-top imgLogro" alt="logro_4">
+            <div class="card-body">
+              <p class="card-text">Premio CEMEX - TEC 2022</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="h-100 card">
+            <img src="resources/img/Logro_5.jpeg" class="card-img-top imgLogro" alt="logro_5">
+            <div class="card-body">
+              <p class="card-text">Premio Especial 2019</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer d-flex align-items-center justify-content-center">
+      <span>©2022 CEMEX S.A.B de C.V</span>
+    </div>
+    
+  </body>
+
+</html>

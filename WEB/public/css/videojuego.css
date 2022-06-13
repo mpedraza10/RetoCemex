@@ -1,0 +1,39 @@
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0%;
+}
+
+.header{
+  background-color: #ffff;
+  border-bottom: 1px solid #272857;
+}
+
+#logo{
+  width: 105px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.icon{
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.game{
+  background-color: #bcbcbc;
+}
+
+.footer{
+  background-color: #272857;
+  height: 7%;
+}
+
+.footer>span{
+  font-family: roboto-regular,sans-serif;
+  font-size: .75rem;
+  line-height: 1.25rem;
+  letter-spacing: .0125rem;
+  color: #ffffff;
+}
