@@ -10,8 +10,11 @@ html, body {
   cursor: pointer;
 }
 
+#contFot{
+  width:10rem;
+}
+
 .headerPerfil{
-  background-color: #e8e8e8;
   border-bottom: 1px solid #272857;
 }
 
@@ -52,8 +55,8 @@ html, body {
 }
 
 #fotoPerfil{
-  max-width: 95%;
-  max-height: 80%;
+  max-width: 90%;
+  max-height: 85%;
   object-fit: contain;
 }
 
