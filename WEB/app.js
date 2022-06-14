@@ -81,8 +81,7 @@ app.post('/register/api', async (req, res) => {
 // Login POST
 app.post('/auth', async (req, res) => {
     const user = req.body.user
-    const pass = req.body.pass
-    var estadisticas = {}
+    const pass = req.body.pass    
     let passwordHaash = await bcrypt.hash(pass, 8)
     if(user && pass) {
         connection.query('SELECT * FROM users WHERE user = ?', [user], async (error, results) => {
@@ -98,21 +97,14 @@ app.post('/auth', async (req, res) => {
                     ruta:''
                 })
             } else {                
-                connection.query('SELECT nombre, apellido_p, id, stories_totales, dinero, tipoCasa, num_vidas FROM empleado WHERE id = ?', id, (error, resultados) => {
-                    estadisticas = {
-                        nombre: resultados[0].nombre + ' ' + resultados[0].apellido_p,
-                        stories_totales: resultados[0].stories_totales,
-                        dinero: resultados[0].dinero,
-                        tipoCasa: resultados[0].tipoCasa,
-                        num_vidas: resultados[0].num_vidas
-                    }
-                    // req.session.name = resultados[0].nombre + ' ' + resultados[0].apellido_p
-                    // req.session.stories_totales = resultados[0].stories_totales
-                    // req.session.dinero = resultados[0].dinero
-                    // req.session.tipoCasa = resultados[0].tipoCasa
-                    // req.session.vidas = resultados[0].num_vidas
+                connection.query('SELECT nombre, apellido_p, id, stories_totales, dinero, tipoCasa, num_vidas FROM empleado WHERE id = ?', id, (error, resultados) => {                    
+                    req.session.dinero = resultados[0].nombre + ' ' + resultados[0].apellido_p                    
+                    req.session.stories_totales = resultados[0].stories_totales
+                    req.session.dinero = resultados[0].dinero
+                    req.session.tipoCasa = resultados[0].tipoCasa
+                    req.session.vidas = resultados[0].num_vidas                    
                 })
-                console.log(estadisticas)
+                console.log(nombre)
                 req.session.hola = 'hola'
                 req.session.loggedin = true
                 req.session.estadisticas = estadisticas
