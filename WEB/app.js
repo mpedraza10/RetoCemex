@@ -82,9 +82,11 @@ app.post('/register/api', async (req, res) => {
 app.post('/auth', async (req, res) => {
     const user = req.body.user
     const pass = req.body.pass
+    var estadisticas = {}
     let passwordHaash = await bcrypt.hash(pass, 8)
     if(user && pass) {
         connection.query('SELECT * FROM users WHERE user = ?', [user], async (error, results) => {
+            const id = results[0].id
             if (results.length == 0 || !(await bcrypt.compare(pass, results[0].pass))) {
                 res.render('', {
                     alert:true,
@@ -95,10 +97,27 @@ app.post('/auth', async (req, res) => {
                     time: false,
                     ruta:''
                 })
-            } else {
-                req.session.loggedin = true;
-                req.session.name = results[0].name
-                req.session.user = user
+            } else {                
+                connection.query('SELECT nombre, apellido_p, id, stories_totales, dinero, tipoCasa, num_vidas FROM empleado WHERE id = ?', id, (error, resultados) => {
+                    estadisticas = {
+                        nombre: resultados[0].nombre + ' ' + resultados[0].apellido_p,
+                        stories_totales: resultados[0].stories_totales,
+                        dinero: resultados[0].dinero,
+                        tipoCasa: resultados[0].tipoCasa,
+                        num_vidas: resultados[0].num_vidas
+                    }
+                    // req.session.name = resultados[0].nombre + ' ' + resultados[0].apellido_p
+                    // req.session.stories_totales = resultados[0].stories_totales
+                    // req.session.dinero = resultados[0].dinero
+                    // req.session.tipoCasa = resultados[0].tipoCasa
+                    // req.session.vidas = resultados[0].num_vidas
+                })
+                console.log(estadisticas)
+                req.session.hola = 'hola'
+                req.session.loggedin = true
+                req.session.estadisticas = estadisticas
+                // req.session.name = results[0].name
+                // req.session.user = user
                 res.render('', {
                     alert:true,
                     alertTitle: "Conexion Exitosa",
@@ -138,6 +157,7 @@ app.get('/', (req, res) => {
 
 app.get('/profile', (req, res) => {
     if (req.session.loggedin) {
+        console.log(req.session)
         res.render('profile', {
             login: true,
             name: req.session.name,
@@ -209,20 +229,6 @@ app.get('/gameCasas', (req, res) => {
     if (req.session.loggedin) {
         app.use('/casas', express.static('casas'))
         res.redirect('/casas')
-    } else {
-        res.redirect('/')
-    }
-})
-
-// Queries para pagina 
-
-app.get('/dataWeb', (req, res) => {
-    if (req.session.loggedin) {
-        res.render('profile', {            
-            name: req.session.name,
-            user: req.session.user,
-            id: req.session.id
-        })
     } else {
         res.redirect('/')
     }
