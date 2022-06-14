@@ -11,11 +11,10 @@ html, body {
 }
 
 .headerPerfil{
-  background-color: #272857ff;
   border-bottom: 1px solid #272857;
 }
 
-#logoBlanco{
+#logo{
   width: 105px;
   height: 30px;
   cursor: pointer;
@@ -60,7 +59,6 @@ html, body {
 .datosPersona{
   font-family: roboto-regular, sans-serif;
   font-weight: bold;
-  color: #ffffff;
 }
 
 .puesto{
