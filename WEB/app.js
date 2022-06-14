@@ -143,7 +143,6 @@ app.get('/profile', (req, res) => {
             name: req.session.name,
             user: req.session.user,
             id: req.session.id
-            
         })
     } else {
         res.render('index')
@@ -210,6 +209,20 @@ app.get('/gameCasas', (req, res) => {
     if (req.session.loggedin) {
         app.use('/casas', express.static('casas'))
         res.redirect('/casas')
+    } else {
+        res.redirect('/')
+    }
+})
+
+// Queries para pagina 
+
+app.get('/dataWeb', (req, res) => {
+    if (req.session.loggedin) {
+        res.render('profile', {            
+            name: req.session.name,
+            user: req.session.user,
+            id: req.session.id
+        })
     } else {
         res.redirect('/')
     }
