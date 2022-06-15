@@ -89,7 +89,7 @@ app.post("/register/api", async (req, res) => {
 });
 
 // Login POST
-app.post("/auth", async (req, res) => {
+/* app.post("/auth", async (req, res) => {
   const user = req.body.user;
   const pass = req.body.pass;
   let passwordHaash = await bcrypt.hash(pass, 8);
@@ -125,7 +125,7 @@ app.post("/auth", async (req, res) => {
               req.session.vidas = resultados[0].num_vidas;
             }
           );
-          //console.log(nombre);
+          //console.log(req.session.nombre);
           req.session.hola = "hola";
           req.session.loggedin = true;
           // req.session.name = results[0].name
@@ -154,6 +154,62 @@ app.post("/auth", async (req, res) => {
     });
   }
 });
+ */
+
+// Login POST
+app.post('/auth', async (req, res) => {
+  const user = req.body.user
+  const pass = req.body.pass
+  let passwordHaash = await bcrypt.hash(pass, 8)
+  if(user && pass) {
+      query = 'SELECT user, pass, nombre, apellido_p, empleado.id, num_vidas, stories_totales, dinero, tipoCasa FROM empleado JOIN users ON users.id_empleado = empleado.id WHERE user = ?'
+      connection.query(query, [user], async (error, results) => {
+          if (results.length == 0 || !(await bcrypt.compare(pass, results[0].pass))) {
+              res.render('', {
+                  alert:true,
+                  alertTitle: "Error",
+                  alertMessage: "Usuario y/o passoword incorrectos!",
+                  alertIcon: 'error',
+                  showConfirmationButton: true,
+                  time: false,
+                  ruta:''
+              })
+          } else {
+
+              console.log(results)
+              req.session.loggedin = true
+              req.session.user = results[0].user
+              req.session.nombre = results[0].nombre + ' ' + results[0].apellido_p
+              req.session.stories_totales = results[0].stories_totales
+              req.session.dinero = results[0].dinero
+              req.session.tipoCasa = results[0].tipoCasa
+              req.session.num_vidas = results[0].num_vidas
+
+              res.render('', {
+                  alert:true,
+                  alertTitle: "Conexion Exitosa",
+                  alertMessage: "Login correcto!",
+                  alertIcon: 'success',
+                  showConfirmationButton: false,
+                  time: 1500,
+                  ruta:'profile'
+              })
+              res.end()
+          }
+      })
+  } else {
+      res.render('login', {
+          alert:true,
+          alertTitle: "Advertencia",
+          alertMessage: "Ingresa un usuario y contraseña!",
+          alertIcon: 'warning',
+          showConfirmationButton: false,
+          time: false,
+          ruta:'login' 
+      })
+      res.end()
+  }
+})
 
 // Paginas autenticadas
 app.get("/", (req, res) => {
@@ -173,8 +229,9 @@ app.get("/profile", (req, res) => {
     console.log(req.session);
     res.render("profile", {
       login: true,
-      name: req.session.name,
+      name: req.session.nombre,
       user: req.session.user,
+      tipoCasa: req.session.tipoCasa
     });
   } else {
     res.render("index");
@@ -187,6 +244,10 @@ app.get("/stats", (req, res) => {
       login: true,
       name: req.session.name,
       user: req.session.user,
+      tipoCasa: req.session.tipoCasa,
+      dinero: req.session.dinero,
+      stories_totales: req.session.stories_totales,
+      num_vidas: req.session.num_vidas
     });
   } else {
     res.render("index");

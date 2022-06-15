@@ -10,12 +10,19 @@ html, body {
   cursor: pointer;
 }
 
+.bodyFondo{
+  background-color: #f7f9fc;
+}
+
 #contFot{
   width:10rem;
 }
 
 .headerPerfil{
-  border-bottom: 1px solid #272857;
+  /*background-color: rgb(215, 215, 215);*/
+  background-color: #ffff;
+  border-bottom: 1px solid #293064;
+  padding-bottom: 23px;
 }
 
 #logo{
@@ -48,7 +55,7 @@ html, body {
 }
 
 .espacioFotoPerfil{
-  background-color: #61aea7;
+  background-color: #293064;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -67,8 +74,8 @@ html, body {
 
 .puesto{
   font-family: roboto-regular, sans-serif;
-  color: #000000;
-  background-color: #e8e8e8;
+  color: #ffff;
+  background-color: #293064;
   border-radius: 20px;
 }
 

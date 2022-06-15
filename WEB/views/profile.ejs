@@ -22,7 +22,7 @@
     </script>
   </head>
   
-  <body>
+  <body class="bodyFondo">
     <div class="container-fluid headerPerfil">
       <br>
       <div class="container-fluid">
@@ -35,8 +35,8 @@
             </div>
             <script src="resources/js/pic.js"></script>
           <div class="col-12 col-md-5 order-3 order-md-2 ps-md-5 datosPersona">
-            <p class="fs-1">Bienvenid@ <%= user %>! </p>
-            <p class="fs-5">33 - Mty, NL - Practicante</p>
+            <p class="fs-1">Bienvenid@ <%= name %>! </p>
+            <p class="fs-5">Monterrey, NL </p>
           </div>
           <div class="col-7 col-md-4 order-2 order-md-3 container justify-content-end">
             <div class="row w-100">
@@ -105,7 +105,7 @@
     <div class="container-fluid">
       <div class="mx-1 row">
         <div class="col-12 p-3 fs-5 puesto">
-        Nombre: Ariel <br> Apellido: Pons <br> User: <%= user %>
+        Nombre: <%= name %> <br> Rango: <%= tipoCasa %> <br> User: <%= user %>
         </div>
         <form id="hide-form">
           <input type="text" name="user" id="user" value=<%= user %>>
