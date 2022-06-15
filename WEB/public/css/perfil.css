@@ -68,12 +68,12 @@ html, body {
 }
 
 .datosPersona{
-  font-family: roboto-regular, sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: bold;
 }
 
 .puesto{
-  font-family: roboto-regular, sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: #ffff;
   background-color: #293064;
   border-radius: 20px;
@@ -89,7 +89,7 @@ html, body {
 }
 
 .txtLogro{
-  font-family: roboto-regular, sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 #hide-form{
